@@ -146,19 +146,27 @@ h3 { font-size: 1.2rem }
 /* Semak kesediaan */
 .semak { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); background: var(--surface); border: 1px solid var(--line); border-radius: 22px; overflow: hidden }
 @media (max-width: 860px) { .semak { grid-template-columns: 1fr } }
-.soalan { list-style: none; margin: 0; padding: 12px 28px; counter-reset: q }
-.soalan li { counter-increment: q; display: grid; grid-template-columns: 30px minmax(0,1fr); gap: 4px 12px; padding: 16px 0; border-bottom: 1px solid var(--line) }
-.soalan li:last-child { border-bottom: 0 }
-.soalan li::before { content: counter(q); width: 26px; height: 26px; border-radius: 8px; background: var(--tint); color: var(--muted); font: 700 13px var(--f-b); display: grid; place-items: center; margin-top: 1px }
-.soalan li.dijawab::before { background: var(--teal-soft); color: var(--teal) }
-.soalan p { margin: 0; font-weight: 600; line-height: 1.45 }
-.jawab { grid-column: 2; display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; border: 0; padding: 0 }
-.jawab label { position: relative; font: 600 14px var(--f-b); padding: 7px 14px; border-radius: 999px; border: 1.5px solid var(--line); cursor: pointer; color: var(--muted); background: #fff }
-.jawab input { position: absolute; opacity: 0; inset: 0; cursor: pointer }
-.jawab label:has(input:focus-visible) { outline: 2px solid var(--teal); outline-offset: 2px }
-.jawab label:has(input[value="2"]:checked) { background: var(--ok-soft); border-color: var(--ok); color: var(--ok) }
-.jawab label:has(input[value="1"]:checked) { background: var(--amber-soft); border-color: var(--amber); color: #9A4A06 }
-.jawab label:has(input[value="0"]:checked) { background: var(--bad-soft); border-color: var(--bad); color: var(--bad) }
+.kuiz { padding: 30px 32px; display: grid; gap: 22px; align-content: start; min-height: 360px }
+.kuiz-atas { display: flex; align-items: center; gap: 14px; font: 700 14px var(--f-b); color: var(--muted) }
+.kuiz-bar { flex: 1; height: 6px; border-radius: 9px; background: var(--tint); overflow: hidden }
+.kuiz-bar i { display: block; height: 100%; width: 0; background: var(--teal); border-radius: 9px; transition: width .35s }
+.kuiz-soalan { font: 700 clamp(1.25rem, 2.6vw, 1.6rem)/1.35 var(--f-d); letter-spacing: -.01em; margin: 0; min-height: 3.2em }
+.kuiz-soalan.masuk { animation: masuk .35s ease-out }
+@keyframes masuk { from { opacity: 0; transform: translateX(24px) } to { opacity: 1; transform: none } }
+.kuiz-jawab { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px }
+@media (max-width: 480px) { .kuiz-jawab { grid-template-columns: 1fr } .kuiz { padding: 24px 20px; min-height: 0 } }
+.kuiz-jawab button { font: 700 16px var(--f-b); padding: 14px 10px; border-radius: 12px; border: 1.5px solid var(--line); background: #fff; color: var(--fg); cursor: pointer; transition: transform .12s, border-color .12s }
+.kuiz-jawab button:hover { transform: translateY(-1px); border-color: var(--teal) }
+.kuiz-jawab button[aria-pressed="true"][data-v="2"] { background: var(--ok-soft); border-color: var(--ok); color: var(--ok) }
+.kuiz-jawab button[aria-pressed="true"][data-v="1"] { background: var(--amber-soft); border-color: var(--amber); color: #9A4A06 }
+.kuiz-jawab button[aria-pressed="true"][data-v="0"] { background: var(--bad-soft); border-color: var(--bad); color: var(--bad) }
+.kuiz-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px }
+.kuiz-nav button { font: 700 14px var(--f-b); border: 0; background: none; color: var(--teal); cursor: pointer; padding: 6px 0 }
+.kuiz-nav button:disabled { color: var(--line); cursor: default }
+.titik { display: flex; gap: 6px }
+.titik button { width: 10px; height: 10px; padding: 0; border-radius: 50%; background: var(--line) }
+.titik button.ada { background: var(--teal) }
+.titik button.kini { outline: 2px solid var(--teal); outline-offset: 2px }
 .keputusan { background: var(--navy); color: #fff; padding: 30px 28px; display: grid; align-content: start; gap: 14px }
 .skor { display: flex; align-items: center; gap: 18px }
 .cincin { --p: 0; width: 104px; height: 104px; border-radius: 50%; flex: none; display: grid; place-items: center; background: conic-gradient(#7FE0D0 calc(var(--p) * 1%), rgba(255,255,255,.12) 0); transition: --p .5s }
@@ -410,12 +418,17 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <div class="kepala">
       <p class="eyebrow">Semak kesediaan</p>
       <h2>Sejauh mana sekolah anda bersedia untuk SK@S?</h2>
-      <p class="lead">Jawab 8 soalan ringkas. Anda akan nampak skor kesediaan dan perkara yang patut diberi perhatian dahulu.</p>
+      <p class="lead">6 soalan ringkas, kurang 1 minit. Anda akan nampak skor kesediaan dan perkara yang patut diberi perhatian dahulu.</p>
     </div>
     <div class="semak">
-      <ol class="soalan" id="soalan"></ol>
+      <div class="kuiz">
+        <div class="kuiz-atas"><span id="kNo">Soalan 1 / 6</span><div class="kuiz-bar"><i id="kBar"></i></div></div>
+        <p class="kuiz-soalan" id="kSoalan" aria-live="polite"></p>
+        <div class="kuiz-jawab" id="kJawab"><button type="button" data-v="2">Ya</button><button type="button" data-v="1">Sebahagian</button><button type="button" data-v="0">Belum</button></div>
+        <div class="kuiz-nav"><button type="button" id="kSebelum">← Sebelum</button><span class="titik" id="kTitik"></span><button type="button" id="kSeterus">Seterusnya →</button></div>
+      </div>
       <div class="keputusan" aria-live="polite">
-        <div class="skor"><div class="cincin" id="cincin"><b id="skorPeratus">–</b></div><div><div class="tahap" id="tahap">Mula menjawab</div><small id="kemajuan">0 / 8 soalan dijawab</small></div></div>
+        <div class="skor"><div class="cincin" id="cincin"><b id="skorPeratus">–</b></div><div><div class="tahap" id="tahap">Mula menjawab</div><small id="kemajuan">0 / 6 soalan dijawab</small></div></div>
         <small id="ringkasan">Skor dikira mengikut jawapan anda: Ya = penuh, Sebahagian = separuh.</small>
         <ul class="jurang" id="jurang"></ul>
         <div class="cta-dwi" id="semakCta" hidden><a class="btn utama" href="#tempah">Tempah sekarang →</a><a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba dalam demo</a></div>
@@ -632,19 +645,24 @@ var PROMO_TAMAT = new Date('2026-12-31T23:59:59+08:00'), PROMO = Date.now() <= P
     ['Setiap eviden ditanda dengan aspek dan tindakan SKPM yang berkaitan.', 'Pemetaan ke aspek SKPM', 'Setiap eviden dipetakan terus ke aspek dan tindakan PDCA semasa diisi.'],
     ['Setiap aspek ada PPS yang dipertanggungjawabkan.', 'PPS bagi setiap aspek', 'Pasukan PPS ditetapkan ikut aspek dan item; Dashboard menandakan aspek tanpa PPS.'],
     ['Bukti Plan, Do, Check dan Action boleh ditunjukkan bagi setiap item.', 'Bukti PDCA lengkap', 'Portal menunjukkan peringkat PDCA yang belum ada bukti bagi setiap item.'],
-    ['Pentadbir boleh tahu aspek mana yang masih kurang eviden pada bila-bila masa.', 'Status kesediaan semasa', 'Dashboard memaparkan aspek yang lengkap, kurang dan belum diisi secara terus.'],
-    ['Fail pengurusan SK@S (surat, minit JK, takwim, ulasan PGB) tersusun di satu tempat.', 'Fail pengurusan SK@S', 'Halaman Pengurusan SK@S menyusun 15 fail pengurusan sekolah dari 01 Surat hingga 11 Bahan Rujukan.'],
-    ['Rumusan Skor MOEIS digunakan untuk mengenal pasti item yang lemah.', 'Rujukan Rumusan Skor', 'Muat naik fail Rumusan Skor MOEIS (.xlsx); skor dipaparkan pada setiap standard dan item.'],
+    ['Pentadbir tahu aspek mana yang masih kurang eviden, pada bila-bila masa.', 'Status kesediaan semasa', 'Dashboard memaparkan aspek yang lengkap, kurang dan belum diisi secara terus.'],
     ['Mana-mana eviden boleh ditunjukkan dalam masa kurang 1 minit semasa verifikasi.', 'Eviden mudah dicari', 'Cari eviden ikut standard, aspek, unit atau tahun, dan eksport laporan ikut standard.']
   ];
-  var jawapan = [];
-  $('soalan').innerHTML = SOALAN.map(function (q, i) {
-    return '<li id="q' + i + '"><div><p>' + q[0] + '</p><fieldset class="jawab"><legend class="perangkap">Soalan ' + (i + 1) + '</legend>' +
-      [['2', 'Ya'], ['1', 'Sebahagian'], ['0', 'Belum']].map(function (o) { return '<label><input type="radio" name="s' + i + '" value="' + o[0] + '">' + o[1] + '</label>'; }).join('') + '</fieldset></div></li>';
-  }).join('');
-  $('soalan').addEventListener('change', function (e) {
-    var i = +e.target.name.slice(1); jawapan[i] = +e.target.value; $('q' + i).classList.add('dijawab');
+  var jawapan = [], kini = 0;
+  $('kTitik').innerHTML = SOALAN.map(function (_, i) { return '<button type="button" aria-label="Soalan ' + (i + 1) + '"></button>'; }).join('');
+  var titik = $('kTitik').children;
+  var papar = function (i) {
+    kini = i;
+    var el = $('kSoalan'); el.textContent = SOALAN[i][0]; el.classList.remove('masuk'); void el.offsetWidth; el.classList.add('masuk');
+    $('kNo').textContent = 'Soalan ' + (i + 1) + ' / ' + SOALAN.length;
+    [].forEach.call($('kJawab').children, function (b) { b.setAttribute('aria-pressed', String(jawapan[i] === +b.dataset.v)); });
+    [].forEach.call(titik, function (t, k) { t.classList.toggle('kini', k === i); t.classList.toggle('ada', jawapan[k] !== undefined); });
+    $('kSebelum').disabled = i === 0; $('kSeterus').disabled = i === SOALAN.length - 1 || jawapan[i] === undefined;
+  };
+  var kiraSkor = function () {
     var dijawab = jawapan.filter(function (v) { return v !== undefined; }), n = dijawab.length;
+    $('kBar').style.width = (n / SOALAN.length * 100) + '%';
+    if (!n) return;
     var pct = Math.round(dijawab.reduce(function (a, b) { return a + b; }, 0) / (2 * n) * 100);
     $('cincin').style.setProperty('--p', pct); $('skorPeratus').textContent = pct + '%';
     $('kemajuan').textContent = n + ' / ' + SOALAN.length + ' soalan dijawab' + (n < SOALAN.length ? ' · skor sementara' : '');
@@ -653,7 +671,20 @@ var PROMO_TAMAT = new Date('2026-12-31T23:59:59+08:00'), PROMO = Date.now() <= P
     $('ringkasan').textContent = lemah.length ? 'Beri perhatian dahulu kepada:' : (n === SOALAN.length ? 'Sekolah anda tersusun. Portal membantu mengekalkannya setiap tahun tanpa kerja berulang.' : 'Teruskan menjawab.');
     $('jurang').innerHTML = lemah.map(function (x) { return '<li><b>' + SOALAN[x.k][1] + '</b>' + SOALAN[x.k][2] + '</li>'; }).join('');
     $('semakCta').hidden = n < SOALAN.length;
+  };
+  $('kJawab').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    jawapan[kini] = +b.dataset.v; kiraSkor(); papar(kini);
+    // Seterusnya secara automatik; selepas soalan terakhir, bawa keputusan ke paparan pada skrin kecil.
+    var lompat = jawapan.findIndex(function (v, k) { return k > kini && v === undefined; });
+    if (lompat < 0 && jawapan.length < SOALAN.length) lompat = jawapan.length;
+    if (lompat >= 0 && lompat < SOALAN.length) setTimeout(function () { papar(lompat); }, 280);
+    else if (innerWidth < 860) setTimeout(function () { document.querySelector('.keputusan').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 300);
   });
+  $('kSebelum').onclick = function () { if (kini > 0) papar(kini - 1); };
+  $('kSeterus').onclick = function () { if (kini < SOALAN.length - 1) papar(kini + 1); };
+  [].forEach.call(titik, function (t, k) { t.onclick = function () { papar(k); }; });
+  papar(0);
 
   // Borang
   $('resit').addEventListener('change', function () {
