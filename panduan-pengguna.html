@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panduan Pengguna</title>
+<meta name="description" content="Panduan bergambar setiap menu Portal Eviden SK@S untuk Guru Data SKPM, Pasukan Pelaksana Sekolah dan Pemantau.">
+<meta property="og:title" content="Panduan Pengguna · Portal Eviden SK@S">
+<meta property="og:description" content="Panduan bergambar setiap menu Portal Eviden SK@S.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap">
+<style>
+:root { --bg:#F5F8FC; --surface:#fff; --tint:#EAF1F9; --fg:#14223A; --muted:#56647C; --line:#DCE4EE; --navy:#123D36;
+  --teal:#0F766E; --teal-soft:#DDF3EF; --amber:#EA7A12; --amber-soft:#FDEBD8; --blue:#2E5AAC; --blue-soft:#E6EEFB; --plum:#7A3E8F; --plum-soft:#F3E8F7 }
+* { box-sizing: border-box }
+html { scroll-behavior: smooth; scroll-padding-top: 130px }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.65 Figtree, system-ui, "Segoe UI", sans-serif }
+a { color: var(--teal) }
+h1, h2, h3 { font-family: "Bricolage Grotesque", system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.15 }
+img { max-width: 100%; display: block }
+[hidden] { display: none !important }
+
+.atas { position: sticky; top: 0; z-index: 20; background: #F5F8FC; border-bottom: 1px solid var(--line); box-shadow: 0 6px 16px -14px rgba(20,34,58,.35) }
+.atas .dalam { max-width: 1240px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap }
+.jenama { display: flex; align-items: center; gap: 10px; font: 800 17px "Bricolage Grotesque", sans-serif; color: var(--fg); text-decoration: none; margin-right: auto }
+.logo { width: 34px; height: 34px; border-radius: 10px; background: var(--navy); display: grid; place-items: center; flex: none }
+.tapis { display: flex; gap: 6px; flex-wrap: wrap; align-items: center }
+.tapis span { font-size: 14px; color: var(--muted); font-weight: 600; margin-right: 2px }
+.tapis button { font: 700 14px Figtree, sans-serif; padding: 7px 13px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; color: var(--muted); cursor: pointer }
+.tapis button[aria-pressed="true"] { background: var(--navy); border-color: var(--navy); color: #fff }
+
+.susun { max-width: 1240px; margin: 0 auto; padding: 28px 16px 80px; display: grid; grid-template-columns: 250px minmax(0,1fr); gap: 40px }
+@media (max-width: 900px) { .susun { grid-template-columns: 1fr; gap: 20px } }
+.susun > * { min-width: 0 }
+@media (max-width: 600px) { table.jadual { display: block; overflow-x: auto } .bab h2 { font-size: 1.35rem } }
+.isi-kand { position: sticky; top: 120px; align-self: start; max-height: calc(100vh - 140px); overflow: auto }
+@media (max-width: 900px) { .isi-kand { position: static; max-height: none; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 6px 14px } .isi-kand ol { display: none } .isi-kand.buka ol { display: block } }
+.isi-kand summary, .isi-kand .tajuk { font: 700 13px Figtree, sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; cursor: pointer; list-style: none; padding: 8px 0 }
+.isi-kand ol { list-style: none; padding: 0; margin: 0; counter-reset: k }
+.isi-kand li { counter-increment: k }
+.isi-kand a { display: block; padding: 6px 10px; border-radius: 8px; text-decoration: none; color: var(--fg); font-size: 15px; font-weight: 500 }
+.isi-kand a::before { content: counter(k) ". "; color: var(--muted) }
+.isi-kand a:hover, .isi-kand a.aktif { background: var(--teal-soft); color: var(--teal) }
+
+.pembuka h1 { font-size: clamp(2rem, 5vw, 2.8rem); margin: 0 0 10px }
+.pembuka p { color: var(--muted); margin: 0 0 8px; max-width: 760px }
+.nota { background: var(--teal-soft); border-radius: 12px; padding: 14px 16px; margin: 16px 0; font-size: 15.5px }
+.nota.amaran { background: var(--amber-soft) }
+
+section.bab { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 28px clamp(18px, 3vw, 34px); margin-top: 22px }
+.bab h2 { font-size: 1.6rem; margin: 0 0 6px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap }
+.bab h3 { font-size: 1.15rem; margin: 26px 0 8px }
+.bab > p, .bab li { color: #2A3A52 }
+.peranan { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 14px }
+.lencana { font: 700 12px Figtree, sans-serif; padding: 3px 10px; border-radius: 999px }
+.lencana.admin { background: var(--amber-soft); color: #9A4A06 }
+.lencana.pps { background: var(--teal-soft); color: var(--teal) }
+.lencana.pemantau { background: var(--blue-soft); color: var(--blue) }
+.untuk { font-weight: 600; color: var(--muted); margin: 0 0 14px }
+ol.langkah { padding-left: 0; list-style: none; counter-reset: l; margin: 12px 0 }
+ol.langkah > li { counter-increment: l; position: relative; padding: 4px 0 8px 40px }
+ol.langkah > li::before { content: counter(l); position: absolute; left: 0; top: 3px; width: 26px; height: 26px; border-radius: 50%; background: var(--amber); color: #fff; font: 700 14px Figtree, sans-serif; display: grid; place-items: center }
+ol.langkah.tanpa-nombor > li::before { background: var(--navy) }
+.k { font: 600 .9em "JetBrains Mono", Consolas, monospace; background: var(--tint); border-radius: 6px; padding: 1px 6px; white-space: nowrap }
+figure { margin: 16px 0 22px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--bg) }
+figure img { width: 100%; height: auto; cursor: zoom-in }
+figure.kecil { max-width: 720px }
+figcaption { font-size: 14px; color: var(--muted); padding: 10px 14px; border-top: 1px solid var(--line); background: #fff }
+.tip { border-left: 4px solid var(--teal); background: var(--bg); border-radius: 0 10px 10px 0; padding: 10px 14px; margin: 14px 0; font-size: 15.5px }
+.tip b { color: var(--teal) }
+table.jadual { width: 100%; border-collapse: collapse; font-size: 15px; margin: 12px 0 }
+table.jadual th, table.jadual td { text-align: left; border-bottom: 1px solid var(--line); padding: 9px 10px; vertical-align: top }
+table.jadual th { background: var(--tint); font-size: 13px }
+.faq details { border-bottom: 1px solid var(--line); padding: 10px 0 }
+.faq summary { font-weight: 700; cursor: pointer }
+.faq p { margin: 8px 0 0; color: var(--muted) }
+.tiada { text-align: center; color: var(--muted); padding: 40px 0 }
+footer { text-align: center; color: var(--muted); font-size: 14px; padding: 30px 16px 50px }
+
+.lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(10,25,22,.86); display: grid; place-items: center; padding: 20px; cursor: zoom-out }
+.lightbox img { max-width: min(1360px, 100%); max-height: 100%; border-radius: 10px; box-shadow: 0 30px 80px rgba(0,0,0,.5) }
+</style>
+</head>
+<body>
+<header class="atas">
+  <div class="dalam">
+    <a class="jenama" href="index.html">
+      <span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 4h9l5 5v11H5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="m8.5 13.5 2.5 2.5 4.5-5" stroke="#2BB5A3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Panduan Pengguna
+    </a>
+    <div class="tapis" role="group" aria-label="Tapis mengikut peranan">
+      <span>Saya ialah:</span>
+      <button type="button" data-tapis="semua" aria-pressed="true">Semua</button>
+      <button type="button" data-tapis="admin" aria-pressed="false">Guru Data SKPM (Admin)</button>
+      <button type="button" data-tapis="pps" aria-pressed="false">PPS</button>
+      <button type="button" data-tapis="pemantau" aria-pressed="false">Pemantau</button>
+    </div>
+  </div>
+</header>
+
+<div class="susun">
+  <nav class="isi-kand" id="isiKand" aria-label="Kandungan">
+    <div class="tajuk" id="isiKandTajuk">Kandungan ▾</div>
+    <ol id="senaraiKand"></ol>
+  </nav>
+
+  <main>
+    <div class="pembuka">
+      <h1>Panduan Pengguna Portal Eviden SK@S</h1>
+      <p>Panduan ini menerangkan setiap menu portal, langkah demi langkah. Nombor oren pada gambar sepadan dengan nombor langkah.</p>
+      <p>Pilih peranan anda di atas untuk melihat bahagian yang berkaitan sahaja. Gambar boleh diklik untuk dibesarkan.</p>
+      <div class="nota">Belum memasang portal? Ikut <a href="panduan.html">panduan pemasangan</a> dahulu. Mahu mencuba tanpa memasang? Buka <a href="demo/" target="_blank" rel="noopener">demo</a>, yang menggunakan skrin yang sama seperti dalam panduan ini.</div>
+    </div>
+
+    <section class="bab" id="peranan" data-peranan="admin pps pemantau">
+      <h2>Log masuk dan peranan</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span><span class="lencana pps">PPS</span><span class="lencana pemantau">Pemantau</span></div>
+      <p class="untuk">Setiap pengguna membuka pautan portal yang dikongsi oleh admin sekolah.</p>
+      <table class="jadual">
+        <thead><tr><th>Peranan</th><th>Siapa</th><th>Boleh buat</th></tr></thead>
+        <tbody>
+          <tr><td><b>Guru Data SKPM</b> (Admin)</td><td>Akaun yang memasang portal</td><td>Semua: tetapan, Pasukan PPS, direktori, rumusan skor, Kekuatan dan Pencapaian Kami, semua eviden</td></tr>
+          <tr><td><b>Pasukan Pelaksana Sekolah</b> (PPS)</td><td>Guru yang e-melnya didaftarkan di Pasukan PPS</td><td>Mengisi dan mengemas kini eviden bagi aspek yang dipertanggungjawabkan</td></tr>
+          <tr><td><b>Pemantau</b></td><td>Sesiapa sahaja (cth. pentadbir, nazir)</td><td>Melihat dan membuka eviden sahaja, tanpa mengubah apa-apa</td></tr>
+        </tbody>
+      </table>
+      <ol class="langkah">
+        <li>Buka pautan portal. Jika e-mel anda sudah didaftarkan (Admin atau PPS), portal terus dibuka mengikut peranan anda.</li>
+        <li>Jika belum didaftarkan, skrin <b>pilih peranan</b> dipaparkan. Pilih <b>Pemantau</b> untuk melihat sahaja. Kad <b>Pasukan Pelaksana Sekolah</b> dan <b>Guru Data SKPM</b> hanya berjaya untuk e-mel yang didaftarkan oleh admin.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/01-pilih-peranan.jpg" alt="Skrin pilih peranan dengan tiga kad: Pasukan Pelaksana Sekolah, Guru Data SKPM dan Pemantau"><figcaption>Skrin pilih peranan: ① PPS ② Guru Data SKPM ③ Pemantau.</figcaption></figure>
+      <div class="tip"><b>Tip:</b> Jika pelayar anda log masuk beberapa akaun Google serentak (cth. Gmail dan DELIMa), buka portal dalam tetingkap Incognito dengan satu akaun sahaja.</div>
+    </section>
+
+    <section class="bab" id="skrin" data-peranan="admin pps pemantau">
+      <h2>Mengenal skrin portal</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span><span class="lencana pps">PPS</span><span class="lencana pemantau">Pemantau</span></div>
+      <ol class="langkah">
+        <li><b>Menu tepi</b>: semua halaman portal. <i>Ruang Kerja Sekolah</i> mengandungi tiga komponen SKPM; <i>Pengurusan</i> mengandungi fail, PPS, direktori, laporan dan tetapan.</li>
+        <li>Butang <b>☰</b> mengecilkan menu tepi kepada ikon supaya ruang kerja lebih luas. Klik sekali lagi untuk membesarkannya. Pada telefon, butang ini membuka menu.</li>
+        <li><b>Tahun</b>: pilih tahun penilaian yang mahu dilihat atau diisi.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/02-menu.jpg" alt="Skrin portal dengan menu tepi, butang menu dan pilihan tahun ditanda"><figcaption>Susun atur portal.</figcaption></figure>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/24-menu-kecil.jpg" alt="Menu tepi dalam mod ikon sahaja"><figcaption>Menu tepi dikecilkan: ① butang ☰ ② menu ikon. Halakan tetikus pada ikon untuk melihat nama menu.</figcaption></figure>
+      <div class="tip"><b>Menu PAUTAN</b> di bawah menu tepi memaparkan pautan yang ditetapkan oleh admin sekolah, contohnya mySKPM.</div>
+    </section>
+
+    <section class="bab" id="dashboard" data-peranan="admin pps pemantau">
+      <h2>Dashboard</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span><span class="lencana pps">PPS</span><span class="lencana pemantau">Pemantau</span></div>
+      <p class="untuk">Ringkasan kesediaan sekolah bagi tahun yang dipilih, disusun ikut tiga komponen.</p>
+      <ol class="langkah">
+        <li><b>Jalur ringkasan</b>: skor Pencapaian Kami, liputan aspek yang ada bukti, dan bilangan kategori Kekuatan Kami yang sudah diisi.</li>
+        <li>Setiap komponen menunjukkan <b>apa yang masih kurang</b>, berserta butang terus ke halaman berkaitan.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/03-dashboard.jpg" alt="Dashboard dengan jalur skor dan bahagian Kekuatan Kami"><figcaption>Dashboard.</figcaption></figure>
+      <h3>Membaca bahagian Pengurusan Kami</h3>
+      <ol class="langkah">
+        <li><b>Aspek belum ada eviden</b> dan <b>Aspek tanpa PPS ditetapkan</b>: senarai yang perlu diselesaikan dahulu. Di bawahnya, carta bilangan eviden ikut standard dan taburan PDCA.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/04-dashboard-jurang.jpg" alt="Bahagian Pengurusan Kami pada Dashboard dengan senarai jurang dan carta"><figcaption>Jurang yang perlu diberi perhatian.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="kekuatan" data-peranan="admin pemantau">
+      <h2>Kekuatan Kami</h2>
+      <div class="peranan"><span class="lencana admin">Admin mengisi</span><span class="lencana pemantau">Semua boleh lihat</span></div>
+      <p class="untuk">Profil sumber dan kekuatan sekolah dalam 9 kategori (A1–A9), contohnya Guru, Prasarana Akademik dan Persekitaran Digital.</p>
+      <ol class="langkah">
+        <li>Setiap kad ialah satu kategori: ringkasan, nilai dan unit.</li>
+        <li>Klik butang pada kad (<b>Isi maklumat</b> atau ikon pensel untuk mengubah) untuk mengisi kategori itu.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/05-kekuatan.jpg" alt="Halaman Kekuatan Kami dengan kad kategori"><figcaption>Halaman Kekuatan Kami.</figcaption></figure>
+      <h3>Mengisi satu kategori</h3>
+      <ol class="langkah tanpa-nombor">
+        <li><b>Huraian / ringkasan</b>: ayat ringkas berdasarkan rekod sekolah, contohnya <i>"Profil 48 orang guru; 20 berpengalaman melebihi 15 tahun"</i>.</li>
+        <li><b>Nilai</b> dan <b>Unit</b>: angka utama, contohnya <span class="k">48</span> <span class="k">orang guru</span>.</li>
+        <li><b>Pautan</b> dokumen atau dashboard sokongan, kemudian <b>Simpan</b>.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/06-kekuatan-borang.jpg" alt="Borang mengisi satu kategori Kekuatan Kami"><figcaption>Borang Kekuatan Kami.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="pengurusan-kami" data-peranan="admin pps pemantau">
+      <h2>Pengurusan Kami: eviden mengikut aspek</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span><span class="lencana pps">PPS mengisi</span><span class="lencana pemantau">Pemantau melihat</span></div>
+      <p class="untuk">Tempat utama mengumpul eviden. Setiap eviden dipetakan ke aspek dan tindakan PDCA SKPM.</p>
+      <ol class="langkah">
+        <li><b>Standard</b>: pilih standard (1, 2, 3.1, 3.2, 3.3). Peratus di sebelah ialah skor Rumusan Skor jika sudah diisi.</li>
+        <li><b>Aspek</b>: klik baris aspek untuk membuka item, PPS dan eviden di dalamnya.</li>
+        <li><b>Tambah eviden</b>: daftar eviden baharu.</li>
+        <li><b>Eksport</b>: muat turun senarai eviden ke Excel (CSV).</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/07-pengurusan-kami.jpg" alt="Halaman Pengurusan Kami dengan senarai standard, aspek dan butang"><figcaption>Halaman Pengurusan Kami.</figcaption></figure>
+      <h3>Di dalam satu aspek</h3>
+      <ol class="langkah">
+        <li><b>Tambah eviden</b> pada item ini: aspek dan item terus dipilih dalam borang.</li>
+        <li>Setiap baris ialah satu eviden: nama, kategori, unit dan peringkat PDCA (P, D, C, A). Baris bergaris kuning belum ada pautan dokumen.</li>
+        <li><b>↗ Buka eviden</b>: membuka dokumen atau rekod.</li>
+        <li><b>✎ Ubah eviden</b>: membetulkan maklumat atau menambah pautan.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/08-aspek-dibuka.jpg" alt="Satu aspek dibuka menunjukkan item, PPS dan senarai eviden"><figcaption>Aspek 1.1 dibuka: PPS item dan senarai eviden.</figcaption></figure>
+      <h3>Menambah eviden</h3>
+      <ol class="langkah">
+        <li><b>Nama dokumen sebenar</b>, contohnya <i>Minit Mesyuarat Kurikulum Bil. 1/2026</i>. Isi juga Kategori dan Panitia/unit/kelab.</li>
+        <li><b>Sumber eviden</b>: <i>Pautan dokumen</i> (Google Drive dan lain-lain), <i>Aplikasi sekolah</i> (dari Direktori Sekolah), <i>Muat naik fail</i> (PDF/gambar, disimpan dalam Drive sekolah) atau <i>Fail keras</i>.</li>
+        <li><b>Pautan dokumen</b>: tampal pautan yang boleh dibuka oleh penyemak.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/09-borang-eviden.jpg" alt="Borang Tambah eviden bahagian atas"><figcaption>Borang Tambah eviden (bahagian atas).</figcaption></figure>
+      <p>Tatal ke bawah dalam borang untuk memetakan eviden:</p>
+      <ol class="langkah">
+        <li>Pilih <b>aspek</b>.</li>
+        <li>Tandakan <b>tindakan</b> yang dibuktikan oleh dokumen ini. Peringkat PDCA dicadangkan secara automatik.</li>
+        <li><b>Simpan eviden</b>.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/09b-borang-pemetaan.jpg" alt="Bahagian pemetaan aspek dan tindakan dalam borang eviden"><figcaption>Pemetaan ke aspek dan tindakan.</figcaption></figure>
+      <div class="tip"><b>Satu dokumen, beberapa aspek:</b> klik butang <b>+ Aspek</b> dalam borang jika dokumen yang sama membuktikan lebih daripada satu aspek. Tidak perlu daftar dua kali.</div>
+      <div class="tip"><b>PPS</b> hanya boleh mengisi eviden bagi aspek yang dipertanggungjawabkan kepadanya, dan hanya boleh mengubah eviden yang didaftarkannya sendiri. Admin boleh mengubah semua eviden. Pemantau tidak nampak butang Tambah atau Ubah.</div>
+    </section>
+
+    <section class="bab" id="pencapaian" data-peranan="admin pemantau">
+      <h2>Pencapaian Kami</h2>
+      <div class="peranan"><span class="lencana admin">Admin mengisi</span><span class="lencana pemantau">Semua boleh lihat</span></div>
+      <p class="untuk">Skor Kemenjadian Murid (80 markah) dan Pencapaian Guru dan Sekolah (20 markah). Jumlah dikira secara automatik daripada 100.</p>
+      <ol class="langkah">
+        <li><b>Ringkasan skor</b>: jumlah keseluruhan dan dua bahagian utama.</li>
+        <li>Pada setiap kad (K1–K5), klik ikon pensel <b>Kemas kini skor</b>.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/10-pencapaian.jpg" alt="Halaman Pencapaian Kami dengan skor dan kad komponen"><figcaption>Halaman Pencapaian Kami.</figcaption></figure>
+      <ol class="langkah tanpa-nombor">
+        <li>Isi <b>skor asal</b> mengikut markah maksimum yang dinyatakan (cth. daripada 50), tambah pautan dokumen sokongan jika ada, kemudian <b>Simpan skor</b>.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/11-pencapaian-borang.jpg" alt="Borang kemas kini skor Pencapaian Kami"><figcaption>Borang kemas kini skor.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="pengurusan-skas" data-peranan="admin pps pemantau">
+      <h2>Pengurusan SK@S: fail pengurusan sekolah</h2>
+      <div class="peranan"><span class="lencana admin">Admin mengurus</span><span class="lencana pps">Semua boleh lihat</span></div>
+      <p class="untuk">Fail pengurusan SK@S sekolah (01 Surat hingga 11 Bahan Rujukan), berasingan daripada eviden Pengurusan Kami.</p>
+      <ol class="langkah">
+        <li>Setiap baris ialah satu fail pengurusan, contohnya <i>01 Surat</i> atau <i>06 Minit Mesyuarat JK SK@S</i>.</li>
+        <li><b>↗</b> membuka dokumen atau folder fail itu.</li>
+        <li><b>✎</b> mengubah fail: tampal pautan folder atau dokumen sebenar sekolah di sini.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/12-pengurusan-skas.jpg" alt="Senarai fail pengurusan SK@S"><figcaption>Senarai fail pengurusan SK@S.</figcaption></figure>
+      <div class="tip"><b>Menambah fail pengurusan baharu:</b> di borang Tambah eviden, tandakan <i>Paparkan dalam Fail Pengurusan SK@S</i>.</div>
+    </section>
+
+    <section class="bab" id="pps" data-peranan="admin">
+      <h2>Pasukan PPS dan akses guru</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span></div>
+      <p class="untuk">Menetapkan Pasukan Pelaksana Sekolah bagi setiap aspek, dan memberi guru akses untuk mengisi eviden.</p>
+      <ol class="langkah">
+        <li><b>Tambah PPS</b> untuk mendaftar guru.</li>
+        <li>Jadual menunjukkan PPS1 dan PPS2 bagi setiap item. Klik ikon pensel di sebelah nama untuk mengubah.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/13-pps.jpg" alt="Halaman Pasukan PPS dengan jadual item dan PPS"><figcaption>Halaman Pasukan PPS.</figcaption></figure>
+      <h3>Mendaftar seorang PPS</h3>
+      <ol class="langkah">
+        <li><b>Nama</b> guru.</li>
+        <li><b>E-mel Google</b> guru (cth. akaun DELIMa). Dengan e-mel ini, guru itu terus boleh log masuk sebagai PPS. Kosongkan jika guru itu tidak perlu mengisi sendiri.</li>
+        <li><b>Jawatan</b>, contohnya <i>Setiausaha Kurikulum</i>.</li>
+        <li>Tandakan semua <b>aspek</b> tanggungjawab guru itu, kemudian <b>Simpan PPS</b>.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/14-pps-borang.jpg" alt="Borang Daftar PPS"><figcaption>Borang Daftar PPS.</figcaption></figure>
+      <div class="tip"><b>Selepas mendaftar,</b> kongsi pautan portal kepada guru itu. Mereka log masuk dengan e-mel yang sama dan terus melihat menu PPS.</div>
+    </section>
+
+    <section class="bab" id="direktori" data-peranan="admin pps pemantau">
+      <h2>Direktori Sekolah</h2>
+      <div class="peranan"><span class="lencana admin">Admin mengurus</span><span class="lencana pps">Semua boleh guna</span></div>
+      <p class="untuk">Senarai aplikasi dan sistem dalaman sekolah. Eviden boleh dipautkan terus kepada aplikasi di sini.</p>
+      <ol class="langkah">
+        <li><b>Daftar aplikasi</b>: nama, pautan dan fungsi aplikasi.</li>
+        <li>Setiap kad: <b>Buka aplikasi</b>, atau ubah dan padam (admin sahaja).</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/15-direktori.jpg" alt="Halaman Direktori Sekolah dengan kad aplikasi"><figcaption>Direktori Sekolah.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="laporan" data-peranan="admin pps pemantau">
+      <h2>Laporan Eviden</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span><span class="lencana pps">PPS</span><span class="lencana pemantau">Pemantau</span></div>
+      <p class="untuk">Senarai lengkap eviden mengikut standard dan aspek, sesuai untuk mesyuarat dan verifikasi.</p>
+      <ol class="langkah">
+        <li><b>Cari</b> ikut nama standard, aspek, eviden atau sumber.</li>
+        <li><b>Tapis</b> ikut standard (dan aspek).</li>
+        <li><b>Eksport CSV</b> untuk dibuka dalam Excel atau Google Sheets.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/16-laporan.jpg" alt="Halaman Laporan Eviden dengan carian, penapis dan butang eksport"><figcaption>Laporan Eviden.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="tetapan" data-peranan="admin">
+      <h2>Tetapan Admin</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span></div>
+      <h3>Profil sekolah dan pautan</h3>
+      <ol class="langkah">
+        <li><b>Logo sekolah</b> (PNG/JPG/WebP, maksimum 1 MB).</li>
+        <li><b>Pautan menu sisi</b>: satu pautan setiap baris, format <span class="k">Label | https://alamat</span>, contohnya <span class="k">mySKPM | https://…</span> (maksimum 10).</li>
+        <li><b>Pautan sistem Standard 4 (PdP)</b>, jika sekolah ada sistem sendiri. Kosongkan untuk menyembunyikan Standard 4.</li>
+      </ol>
+      <p>Nama dan kod sekolah diambil daripada lesen dan tidak boleh diubah di sini. Klik <b>Simpan</b> di bawah borang.</p>
+      <figure><img loading="lazy" src="panduan-pengguna/img/17-tetapan-profil.jpg" alt="Panel Profil sekolah di Tetapan Admin"><figcaption>Profil sekolah.</figcaption></figure>
+      <h3>Akses Portal</h3>
+      <p>Secara lalai, hanya e-mel yang didaftarkan (Admin dan PPS) boleh mengisi eviden; orang lain boleh masuk sebagai Pemantau. Tandakan kotak ini hanya jika mahu <b>sesiapa sahaja</b> boleh memilih peranan PPS tanpa didaftarkan.</p>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/20-tetapan-akses.jpg" alt="Panel Akses Portal"><figcaption>Akses Portal.</figcaption></figure>
+      <h3>Rumusan Skor (dari MOEIS)</h3>
+      <ol class="langkah">
+        <li>Muat naik fail <b>Rumusan-skor.xlsx</b> yang dimuat turun dari MOEIS (CSV juga diterima). Skor terus dipaparkan pada setiap standard dan item di Pengurusan Kami.</li>
+        <li>Atau klik <b>Isi manual</b> untuk mengisi atau membetulkan skor 42 item dan 5 peratus standard sendiri.</li>
+      </ol>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/18-tetapan-rumusan.jpg" alt="Panel Rumusan Skor"><figcaption>Rumusan Skor.</figcaption></figure>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/19-rumusan-manual.jpg" alt="Borang isi manual Rumusan Skor"><figcaption>Isi manual: peratus standard diisi sendiri, seperti dalam fail MOEIS.</figcaption></figure>
+      <h3>Data contoh</h3>
+      <p><b>Jana data contoh</b> mengisi portal dengan data rekaan supaya anda boleh mencuba semua menu. Klik <b>Buang data contoh</b> sebelum mula mengisi data sebenar. Rekod sebenar yang anda tambah tidak akan dipadam.</p>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/21-data-contoh.jpg" alt="Panel Data contoh dengan butang Buang data contoh"><figcaption>Data contoh.</figcaption></figure>
+    </section>
+
+    <section class="bab" id="kemas-kini" data-peranan="admin">
+      <h2>Mengemas kini portal</h2>
+      <div class="peranan"><span class="lencana admin">Admin</span></div>
+      <p class="untuk">Bila versi baharu tersedia, jalur kuning dipaparkan kepada admin sahaja.</p>
+      <ol class="langkah">
+        <li>Klik <b>Cara kemas kini</b> dan ikut langkah yang dipaparkan.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/22-notis-kemas-kini.jpg" alt="Jalur notis versi baharu portal tersedia"><figcaption>Notis versi baharu.</figcaption></figure>
+      <figure class="kecil"><img loading="lazy" src="panduan-pengguna/img/23-langkah-kemas-kini.jpg" alt="Langkah mengemas kini portal"><figcaption>Langkah kemas kini. Lakukan menggunakan akaun yang memasang portal.</figcaption></figure>
+      <div class="nota amaran"><b>Penting:</b> langkah <i>Deploy → Manage deployments → New version</i> wajib. Tanpanya, portal kekal menggunakan versi lama walaupun versi Library sudah ditukar.</div>
+    </section>
+
+    <section class="bab" id="paparan-pps" data-peranan="pps">
+      <h2>Paparan PPS</h2>
+      <div class="peranan"><span class="lencana pps">PPS</span></div>
+      <ol class="langkah">
+        <li>Nama dan peranan anda dipaparkan di bawah menu tepi. Menu <b>Tetapan Admin</b> tidak dipaparkan untuk PPS.</li>
+        <li><b>Tambah eviden</b> di Pengurusan Kami. Lihat <a href="#pengurusan-kami">Pengurusan Kami</a> untuk langkah penuh.</li>
+      </ol>
+      <figure><img loading="lazy" src="panduan-pengguna/img/25-paparan-pps.jpg" alt="Portal dilihat sebagai PPS"><figcaption>Portal sebagai PPS.</figcaption></figure>
+    </section>
+
+    <section class="bab faq" id="masalah" data-peranan="admin pps pemantau">
+      <h2>Masalah biasa</h2>
+      <details><summary>Portal tersangkut pada "Memuatkan portal SK@S…"</summary><p>Muat semula halaman. Jika masih berlaku, buka dalam tetingkap Incognito dengan satu akaun Google. Admin: pastikan portal menggunakan versi terkini (lihat <a href="#kemas-kini">Mengemas kini portal</a>).</p></details>
+      <details><summary>"Akaun ini belum didaftarkan untuk peranan tersebut"</summary><p>E-mel anda belum didaftarkan. Minta admin menambah e-mel anda di Pasukan PPS, atau pilih Pemantau untuk melihat sahaja.</p></details>
+      <details><summary>Saya PPS tetapi tidak nampak butang Tambah eviden pada sesuatu aspek</summary><p>Anda hanya boleh mengisi aspek yang dipertanggungjawabkan. Minta admin menandakan aspek itu dalam rekod PPS anda.</p></details>
+      <details><summary>Penyemak tidak dapat membuka pautan eviden</summary><p>Pastikan dokumen di Google Drive dikongsi sekurang-kurangnya kepada akaun dalam domain sekolah, atau "Anyone with the link".</p></details>
+      <details><summary>Nama sekolah salah eja</summary><p>Nama diambil daripada lesen. Hubungi pembekal dengan no. tempahan anda untuk membetulkannya.</p></details>
+      <p class="tiada" id="tiadaBab" hidden>Tiada bahagian untuk peranan ini.</p>
+    </section>
+  </main>
+</div>
+<footer>Portal Eviden SK@S · <a href="index.html">Laman utama</a> · <a href="panduan.html">Panduan pemasangan</a> · <a href="demo/" target="_blank" rel="noopener">Demo</a></footer>
+
+<script>
+(function () {
+  var bab = [].slice.call(document.querySelectorAll('section.bab')), senarai = document.getElementById('senaraiKand');
+  senarai.innerHTML = bab.map(function (b) { return '<li data-untuk="' + b.dataset.peranan + '"><a href="#' + b.id + '">' + b.querySelector('h2').textContent + '</a></li>'; }).join('');
+  var butang = [].slice.call(document.querySelectorAll('[data-tapis]'));
+  var tapis = function (r) {
+    butang.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.tapis === r)); });
+    bab.forEach(function (b) { b.hidden = r !== 'semua' && b.dataset.peranan.split(' ').indexOf(r) < 0; });
+    [].forEach.call(senarai.children, function (li) { li.hidden = r !== 'semua' && li.dataset.untuk.split(' ').indexOf(r) < 0; });
+    try { localStorage.setItem('panduan-peranan', r); } catch (e) {}
+  };
+  butang.forEach(function (b) { b.onclick = function () { tapis(b.dataset.tapis); }; });
+  var awal = 'semua'; try { awal = localStorage.getItem('panduan-peranan') || 'semua'; } catch (e) {}
+  var q = /[?&]peranan=(admin|pps|pemantau)/.exec(location.search); if (q) awal = q[1];
+  tapis(awal);
+
+  // Kandungan mudah alih: klik tajuk untuk buka/tutup.
+  document.getElementById('isiKandTajuk').onclick = function () { document.getElementById('isiKand').classList.toggle('buka'); };
+
+  // Serlahkan bab semasa dalam kandungan.
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { [].forEach.call(senarai.querySelectorAll('a'), function (a) { a.classList.toggle('aktif', a.getAttribute('href') === '#' + e.target.id); }); } }); }, { rootMargin: '-40% 0px -55% 0px' });
+    bab.forEach(function (b) { io.observe(b); });
+  }
+
+  // Besarkan gambar.
+  document.addEventListener('click', function (e) {
+    var img = e.target.closest('figure img');
+    if (img) { var lb = document.createElement('div'); lb.className = 'lightbox'; lb.innerHTML = '<img src="' + img.src + '" alt="">'; lb.onclick = function () { lb.remove(); }; document.body.appendChild(lb); return; }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { var lb = document.querySelector('.lightbox'); if (lb) lb.remove(); } });
+})();
+</script>
+</body>
+</html>
