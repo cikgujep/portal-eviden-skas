@@ -2116,6 +2116,7 @@ function modal(title,body,submitText='Simpan',handler){$('#modal').innerHTML=`<f
 function field(label,name,value='',attrs=''){return `<label class="field">${label}<input name="${name}" value="${esc(value)}" ${attrs}></label>`;}
 // Cadangan autolengkap daripada nilai yang sudah digunakan sekolah (unik, tersusun).
 const known=vals=>[...new Set(vals.map(v=>String(v||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ms'));
+const lines=t=>String(t||'').split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
 function datalist(id,values){return `<datalist id="${id}">${(values||[]).map(v=>`<option value="${esc(v)}">`).join('')}</datalist>`;}
 function optionList(values,selected){return values.map(v=>`<option ${v===selected?'selected':''}>${esc(v)}</option>`).join('');}
 function chooseEvidence(aspect){const es=records().filter(e=>canEdit(e));modal('Eviden untuk aspek '+aspect,`<p class="muted">Daftarkan bukti baharu atau tambah pemetaan pada dokumen yang sudah tersedia.</p><button type="button" class="primary" id="newForAspect">${icon('plus')} Daftar eviden baharu</button>${es.length?`<label class="field" style="margin-top:22px">Guna eviden sedia ada<select id="reuse"><option value="">Pilih dokumen…</option>${es.map(e=>`<option value="${e.id}">${esc(e.name)}</option>`).join('')}</select></label>`:''}`);$('#newForAspect').onclick=()=>evidenceForm(null,aspect);if($('#reuse'))$('#reuse').onchange=e=>{if(e.target.value)evidenceForm(db.evidence.find(x=>x.id===e.target.value),aspect);};}
