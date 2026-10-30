@@ -216,6 +216,11 @@ button.hantar:disabled { opacity: .6; cursor: wait }
 .ralat { display: none; margin-top: 14px; background: var(--bad-soft); color: var(--bad); border-radius: 10px; padding: 12px 14px; font-weight: 600 }
 .berjaya { text-align: center; padding: 36px 24px }
 .berjaya .tanda { width: 64px; height: 64px; border-radius: 50%; background: var(--ok-soft); color: var(--ok); display: grid; place-items: center; font-size: 32px; margin: 0 auto 16px }
+.emel-kad { display: flex; gap: 14px; align-items: flex-start; text-align: left; max-width: 480px; margin: 22px auto 0; background: var(--teal-soft); border-radius: 14px; padding: 16px 18px }
+.emel-ikon { flex: none; width: 40px; height: 40px; border-radius: 12px; background: var(--teal); color: #fff; display: grid; place-items: center; font-size: 20px }
+.emel-kad b { display: block; margin-bottom: 4px }
+.emel-kad span { color: var(--muted); font-size: 15px }
+.nota-emel { color: var(--muted); font-size: 14px; max-width: 480px; margin: 14px auto 0 }
 .lesen { display: inline-grid; gap: 10px; background: var(--teal-soft); border-radius: 14px; padding: 16px 26px; margin-top: 8px; text-align: left }
 .lesen span { font-size: 13px; font-weight: 700; color: var(--teal) }
 .lesen b { display: block; font: 600 1.25rem var(--f-m); letter-spacing: .06em; color: var(--fg); word-break: break-all }
@@ -405,7 +410,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <h2>Siap dipasang dalam 3 langkah</h2>
     </div>
     <ol class="langkah">
-      <li><h3>Tempah dan bayar</h3><p>Pindah RM39 dan muat naik resit dalam <a href="#tempah">borang tempahan</a>. Kod dan kunci lesen terus dipaparkan dan dihantar ke e-mel.</p><span class="masa">2 minit</span></li>
+      <li><h3>Tempah dan bayar</h3><p>Pindah RM39 dan muat naik resit dalam <a href="#tempah">borang tempahan</a>. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p><span class="masa">2 minit</span></li>
       <li><h3>Buat salinan dan pasang</h3><p>Klik pautan salinan dalam e-mel, terbitkan sebagai web app, kemudian masukkan kod lesen dalam wizard pemasangan.</p><span class="masa">5 minit</span></li>
       <li><h3>Kongsi kepada guru</h3><p>Tetapkan unit, jawatan PPS dan pautan sekolah. Kongsi pautan portal kepada guru dan mula mengisi eviden.</p><span class="masa">Hari yang sama</span></li>
     </ol>
@@ -445,7 +450,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <details><summary>Akaun apa yang patut digunakan?</summary><p>Gunakan akaun rasmi sekolah (contohnya akaun DELIMa) yang akan kekal walaupun guru bertukar. Akaun ini menjadi Admin dan pemilik semua fail eviden.</p></details>
       <details><summary>Boleh saya cuba sebelum membeli?</summary><p>Boleh. <a href="demo/" target="_blank" rel="noopener">Buka demo</a> untuk mencuba portal sebenar dengan data contoh sekolah rekaan. Apa yang anda ubah dalam demo hanya disimpan dalam pelayar anda.</p></details>
       <details><summary>Perlukah guru memasang aplikasi?</summary><p>Tidak. Portal dibuka melalui pautan di pelayar telefon atau komputer.</p></details>
-      <details><summary>Bagaimana jika e-mel lesen tidak sampai?</summary><p>Kod dan kunci lesen juga dipaparkan di skrin sebaik tempahan berjaya. Semak folder Spam, atau balas kepada pembangun dengan no. tempahan anda.</p></details>
+      <details><summary>Bagaimana jika e-mel lesen tidak sampai?</summary><p>Semak folder Spam atau Promotions dahulu. Jika masih tiada, hubungi pembangun dengan no. tempahan yang dipaparkan selepas menghantar borang, dan e-mel lesen akan dihantar semula.</p></details>
       <details><summary>Bolehkah kami guna lebih daripada satu Google Sheet?</summary><p>Boleh. Lesen diikat pada kod dan nama sekolah anda, bukan pada satu fail. Anda boleh memasang beberapa salinan portal untuk sekolah yang sama, contohnya satu bagi setiap tahun. Lesen tidak boleh digunakan untuk sekolah lain kerana nama dan kod sekolah dipaparkan terus daripada lesen.</p></details>
     </div>
   </div>
@@ -456,7 +461,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <div class="kepala">
       <p class="eyebrow">Borang tempahan</p>
       <h2>Dapatkan lesen sekolah anda</h2>
-      <p class="lead">Pindah RM39, muat naik resit dan hantar. Kod lesen serta cara pemasangan terus dipaparkan dan dihantar ke e-mel anda.</p>
+      <p class="lead">Pindah RM39, muat naik resit dan hantar. Kod lesen, pautan salinan dan cara pemasangan terus dihantar ke e-mel anda.</p>
     </div>
 
     <div class="borang">
@@ -511,12 +516,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <div class="tanda">✓</div>
         <h2>Tempahan berjaya</h2>
         <p class="lead" id="teksBerjaya" style="margin:12px auto 0"></p>
-        <div class="lesen"><div><span>Kod lesen (kod sekolah)</span><b id="kodLesen"></b></div><div><span>Kunci lesen</span><b id="kunciLesen"></b></div></div>
-        <p style="color:var(--muted);font-size:14px;margin-top:14px">Simpan kod dan kunci ini. Anda perlukannya semasa pemasangan.</p>
-        <div class="tindakan">
-          <a class="btn utama" id="pautanSalinan" target="_blank" rel="noopener">Buat salinan portal →</a>
-          <a class="btn kedua" id="pautanPanduan" href="panduan.html" target="_blank" rel="noopener">Buka panduan pemasangan</a>
+        <div class="emel-kad">
+          <div class="emel-ikon" aria-hidden="true">✉</div>
+          <div><b>Semak peti masuk e-mel anda</b><span>Kod lesen, kunci lesen, pautan salinan portal dan cara pemasangan dihantar dalam satu e-mel daripada <i>Portal Eviden SK@S</i>.</span></div>
         </div>
+        <p class="nota-emel">Tiada dalam peti masuk? Semak folder <b>Spam</b> atau <b>Promotions</b>. Jika masih tiada selepas 15 minit, hubungi pembangun dengan no. tempahan anda.</p>
       </div>
     </div>
   </div>
@@ -646,10 +650,8 @@ var WHATSAPP = ''; // cth. '60123456789'. Kosong = butang WhatsApp disembunyikan
           if (!r.ok) throw new Error(r.message || 'Tempahan gagal.');
           $('borang').hidden = true; $('berjaya').hidden = false;
           $('teksBerjaya').textContent = r.emelDihantar
-            ? 'No. tempahan ' + r.no + '. Kod lesen dan cara pemasangan telah dihantar ke ' + r.emel + '. Semak juga folder Spam.'
-            : 'No. tempahan ' + r.no + '. E-mel ke ' + r.emel + ' tertangguh, tetapi anda boleh mula memasang sekarang dengan kod di bawah.';
-          $('kodLesen').textContent = r.kod; $('kunciLesen').textContent = r.kunci;
-          $('pautanSalinan').href = r.salinan;
+            ? 'No. tempahan ' + r.no + '. Semua maklumat lesen telah dihantar ke ' + r.emel + '.'
+            : 'No. tempahan ' + r.no + '. E-mel ke ' + r.emel + ' tertangguh. Pembangun telah dimaklumkan dan akan menghantarnya semula dalam masa 24 jam.';
           $('berjaya').scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     }).catch(pulih);
