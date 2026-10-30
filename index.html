@@ -4,7 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portal Eviden SK@S</title>
-<meta name="description" content="Kumpul, petakan dan pantau eviden SKPM SK@S sekolah anda di satu portal. Bayar sekali, guna seumur hayat.">
+<meta name="description" content="Kumpul, petakan dan pantau eviden SKPM SK@S sekolah anda di satu portal. Sekali bayar, tiada yuran tahunan.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Portal Eviden SK@S">
+<meta property="og:description" content="Kumpul, petakan dan pantau eviden SKPM SK@S sekolah anda di satu portal. Sekali bayar, tiada yuran tahunan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap">
 <style>
@@ -165,6 +168,7 @@ input[type=range] { width: 100%; accent-color: var(--teal) }
 .harga { font: 800 3.6rem/1 var(--f-d) } .harga small { font: 600 1rem var(--f-b); color: var(--muted) }
 .promo-pita { display: inline-block; margin: 0 0 12px 8px; background: var(--amber-soft); color: #9A4A06; font: 700 13px var(--f-b); padding: 5px 12px; border-radius: 999px }
 .harga-lama { font: 600 1.4rem var(--f-d); color: var(--muted); margin-right: 6px }
+.harga-sub { margin: 6px 0 0; color: var(--muted); font-weight: 600 }
 .harga-kad ul { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 11px }
 .harga-kad li { display: flex; gap: 10px } .harga-kad li::before { content: "✓"; color: var(--teal); font-weight: 800 }
 .harga-kad .btn { width: 100% }
@@ -260,7 +264,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <a class="btn utama" href="#tempah">Tempah sekarang · <span class="harga-n">RM39</span> →</a>
         <a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba demo percuma</a>
       </div>
-      <p class="nota"><span class="promo-teks"><b>Harga promo RM39 sehingga 31 Disember 2026</b> (harga biasa RM59). </span>Bayar sekali, guna seumur hayat. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p>
+      <p class="nota"><span class="promo-teks"><b>Harga promo RM39 sehingga 31 Disember 2026</b> (harga biasa RM59). </span>Sekali bayar, tiada yuran tahunan. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p>
     </div>
     <div class="peranti" aria-hidden="true">
       <div class="skrin">
@@ -285,10 +289,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 
 <div class="fakta">
   <div class="wrap">
-    <div><b>5</b><span>bidang standard SK@S (1, 2, 3.1, 3.2, 3.3)</span></div>
-    <div><b>205</b><span>cadangan eviden sedia dimuatkan</span></div>
-    <div><b>3</b><span>peranan: Admin, Pengisian, Pemantau</span></div>
-    <div><b>100%</b><span>data kekal dalam Drive sekolah anda</span></div>
+    <div><b>28</b><span>aspek SKPM dipetakan</span></div>
+    <div><b>220</b><span>templat eviden siap</span></div>
+    <div><b>5 minit</b><span>siap dipasang</span></div>
+    <div><b>100%</b><span>data milik sekolah</span></div>
   </div>
 </div>
 
@@ -306,7 +310,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <tr><td>Pemetaan ke SKPM</td><td>Guru tidak pasti eviden masuk aspek dan tindakan mana</td><td>Setiap eviden dipetakan terus ke aspek dan tindakan PDCA</td></tr>
         <tr><td>Status kesediaan</td><td>Hanya diketahui semasa mesyuarat atau minggu terakhir</td><td>Dashboard menunjukkan apa yang lengkap, draf dan belum diisi</td></tr>
         <tr><td>Agihan tugas PPS</td><td>Senarai bertulis, susah pantau siapa buat apa</td><td>Pasukan PPS ditetapkan bagi setiap aspek, setiap guru nampak tugasnya</td></tr>
-        <tr><td>Laporan untuk verifikasi</td><td>Disusun manual berhari-hari</td><td>Laporan eviden ikut standard sedia dicetak</td></tr>
+        <tr><td>Laporan untuk verifikasi</td><td>Disusun manual berhari-hari</td><td>Laporan eviden ikut standard, sedia dieksport ke Excel</td></tr>
       </tbody>
     </table>
   </div>
@@ -328,7 +332,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <div class="panel" id="t1" role="tabpanel">
       <div>
         <h3>Isi sekali, terus masuk aspek yang betul</h3>
-        <p class="lead">Guru memilih aspek dan tindakan, kemudian muat naik fail atau tampal pautan. Mulakan dengan 205 cadangan eviden supaya tidak bermula dari kosong.</p>
+        <p class="lead">Guru memilih aspek dan tindakan, kemudian muat naik fail atau tampal pautan. Mulakan dengan 220 templat (205 cadangan eviden dan 15 fail pengurusan SK@S) supaya tidak bermula dari kosong.</p>
         <ul><li>Muat naik fail terus ke folder Drive sekolah</li><li>Satu eviden boleh dipetakan ke beberapa tindakan PDCA</li><li>Mesra telefon: guru boleh mengisi dari mana-mana</li></ul>
       </div>
       <div class="pratonton">
@@ -360,11 +364,11 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <div>
         <h3>Setiap ahli PPS tahu tanggungjawabnya</h3>
         <p class="lead">Tetapkan PPS bagi setiap aspek dan item SKPM. Akses ditentukan ikut peranan, jadi data kekal teratur.</p>
-        <ul><li>Admin, Pengisian dan Pemantau dengan akses berbeza</li><li>Dashboard menandakan aspek yang belum ada PPS</li><li>Log aktiviti siapa mengemas kini apa</li></ul>
+        <ul><li>Admin, PPS dan Pemantau dengan akses berbeza</li><li>Dashboard menandakan aspek yang belum ada PPS</li><li>Log aktiviti siapa mengemas kini apa</li></ul>
       </div>
       <div class="pratonton">
-        <div class="baris"><span><b>Pn. Aisyah</b><br><small>SU Kurikulum · Kurikulum</small></span><span class="st ok">Pengisian</span></div>
-        <div class="baris"><span><b>En. Rahman</b><br><small>PK HEM · Hal Ehwal Murid</small></span><span class="st ok">Pengisian</span></div>
+        <div class="baris"><span><b>Pn. Aisyah</b><br><small>SU Kurikulum · Kurikulum</small></span><span class="st ok">PPS</span></div>
+        <div class="baris"><span><b>En. Rahman</b><br><small>PK HEM · Hal Ehwal Murid</small></span><span class="st ok">PPS</span></div>
         <div class="baris"><span><b>Pn. Mei Ling</b><br><small>Ketua Panitia Sains</small></span><span class="st ks">Pemantau</span></div>
       </div>
     </div>
@@ -376,7 +380,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <ul><li>Laporan eviden ikut standard dan status</li><li>Direktori Sekolah untuk aplikasi dalaman sekolah</li><li>Pautan menu sisi (cth. mySKPM) ditetapkan sendiri oleh admin</li></ul>
       </div>
       <div class="pratonton">
-        <div class="baris"><span><b>Laporan Standard 1</b><br><small>48 eviden · 92% lengkap</small></span><span class="st ok">Cetak</span></div>
+        <div class="baris"><span><b>Laporan Standard 1</b><br><small>48 eviden · 92% lengkap</small></span><span class="st ok">Eksport</span></div>
         <div class="baris"><span><b>Direktori Sekolah</b><br><small>Sistem kehadiran, e-Panitia, jadual</small></span><span class="st ks">12 pautan</span></div>
         <div class="baris"><span><b>Pautan menu sisi</b><br><small>mySKPM · Portal PPD</small></span><span class="st ks">Tetapan Admin</span></div>
       </div>
@@ -423,15 +427,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <div class="wrap">
     <div class="kepala">
       <p class="eyebrow">Harga</p>
-      <h2>Satu harga. Sekali bayar.</h2>
+      <h2>Satu harga untuk seluruh sekolah</h2>
     </div>
     <div class="harga-kad">
-      <span class="pita">Lesen seumur hayat</span>
+      <span class="pita">Sekali bayar</span>
       <p class="promo-pita" id="promoPita">Harga promo sehingga 31 Disember 2026</p>
       <div class="harga"><s class="harga-lama">RM59</s> <span class="harga-n">RM39</span> <small>/ sekolah</small></div>
+      <p class="harga-sub">Tiada yuran tahunan</p>
       <ul>
         <li>Semua modul: eviden, dashboard, PPS, laporan, direktori</li>
-        <li>205 cadangan eviden sedia dimuatkan</li>
+        <li>220 templat eviden: 205 cadangan + 15 fail pengurusan SK@S</li>
         <li>Pengguna tanpa had dalam sekolah anda</li>
         <li>Boleh dipasang pada beberapa Google Sheet sekolah yang sama</li>
         <li>Data dan fail kekal dalam Google Drive sekolah</li>
@@ -447,6 +452,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <div class="wrap">
     <div class="kepala"><p class="eyebrow">Soalan lazim</p><h2>Sebelum anda tempah</h2></div>
     <div class="faq">
+      <details><summary>Adakah ini sistem rasmi KPM?</summary><p>Tidak. Portal Eviden SK@S ialah alat bantu sekolah untuk mengumpul dan menyusun eviden mengikut SKPM Kualiti@Sekolah. Penilaian dan skor rasmi kekal dalam sistem KPM (MOEIS). Rumusan Skor dari MOEIS boleh dimuat naik ke portal sebagai rujukan.</p></details>
       <details><summary>Adakah sesuai untuk sekolah rendah dan menengah?</summary><p>Ya. Semasa pemasangan anda memilih jenis sekolah (SK atau SM). Pasukan PPS, Direktori Sekolah dan pautan menu juga ditetapkan sendiri.</p></details>
       <details><summary>Perlukah saya pandai komputer untuk memasangnya?</summary><p>Tidak. Anda hanya membuat salinan Google Sheet, menekan Deploy dan mengisi wizard. E-mel lesen dan panduan bergambar menerangkan setiap klik.</p></details>
       <details><summary>Siapa boleh melihat data eviden sekolah kami?</summary><p>Hanya pengguna yang didaftarkan oleh admin sekolah anda. Data dan fail berada dalam Google Sheet dan Drive milik akaun sekolah anda. Pembangun tidak boleh melihatnya.</p></details>
