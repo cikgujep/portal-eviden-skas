@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Portal Eviden SK@S</title>
-<meta name="description" content="Kumpul, petakan dan pantau eviden SKPM SK@S sekolah anda di satu portal. RM39 sekali bayar, seumur hayat.">
+<meta name="description" content="Kumpul, petakan dan pantau eviden SKPM SK@S sekolah anda di satu portal. Bayar sekali, guna seumur hayat.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap">
 <style>
@@ -163,6 +163,8 @@ input[type=range] { width: 100%; accent-color: var(--teal) }
 .harga-kad { max-width: 560px; margin: 0 auto; background: var(--surface); border: 2px solid var(--teal); border-radius: 24px; padding: 34px; box-shadow: 0 30px 60px -40px rgba(15,118,110,.6) }
 .harga-kad .pita { display: inline-block; background: var(--teal); color: #fff; font: 700 13px var(--f-b); padding: 5px 12px; border-radius: 999px; margin-bottom: 14px }
 .harga { font: 800 3.6rem/1 var(--f-d) } .harga small { font: 600 1rem var(--f-b); color: var(--muted) }
+.promo-pita { display: inline-block; margin: 0 0 12px 8px; background: var(--amber-soft); color: #9A4A06; font: 700 13px var(--f-b); padding: 5px 12px; border-radius: 999px }
+.harga-lama { font: 600 1.4rem var(--f-d); color: var(--muted); margin-right: 6px }
 .harga-kad ul { list-style: none; padding: 0; margin: 22px 0 26px; display: grid; gap: 11px }
 .harga-kad li { display: flex; gap: 10px } .harga-kad li::before { content: "✓"; color: var(--teal); font-weight: 800 }
 .harga-kad .btn { width: 100% }
@@ -244,7 +246,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       Portal Eviden SK@S
     </a>
     <nav><a href="#kelebihan">Kelebihan</a><a href="#ciri">Ciri-ciri</a><a href="#kalkulator">Kalkulator</a><a href="#harga">Harga</a><a href="#soalan">Soalan lazim</a><a href="demo/" target="_blank" rel="noopener">Demo</a></nav>
-    <a class="btn utama" href="#tempah">Tempah RM39</a>
+    <a class="btn utama" href="#tempah">Tempah <span class="harga-n">RM39</span></a>
   </div>
 </header>
 
@@ -255,10 +257,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <h1>Semua eviden SK@S sekolah anda, <em>siap dipetakan</em> di satu tempat.</h1>
       <p class="lead">Tiada lagi fail bertaburan dan semakan saat akhir. Guru mengisi eviden ikut standard dan aspek, PPS memantau status PDCA, dan pentadbir nampak apa yang masih kurang sebelum verifikasi.</p>
       <div class="cta-dwi">
-        <a class="btn utama" href="#tempah">Tempah sekarang · RM39 →</a>
+        <a class="btn utama" href="#tempah">Tempah sekarang · <span class="harga-n">RM39</span> →</a>
         <a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba demo percuma</a>
       </div>
-      <p class="nota">Bayar sekali, guna seumur hayat. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p>
+      <p class="nota"><span class="promo-teks"><b>Harga promo RM39 sehingga 31 Disember 2026</b> (harga biasa RM59). </span>Bayar sekali, guna seumur hayat. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p>
     </div>
     <div class="peranti" aria-hidden="true">
       <div class="skrin">
@@ -410,7 +412,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <h2>Siap dipasang dalam 3 langkah</h2>
     </div>
     <ol class="langkah">
-      <li><h3>Tempah dan bayar</h3><p>Pindah RM39 dan muat naik resit dalam <a href="#tempah">borang tempahan</a>. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p><span class="masa">2 minit</span></li>
+      <li><h3>Tempah dan bayar</h3><p>Pindah <span class="harga-n">RM39</span> dan muat naik resit dalam <a href="#tempah">borang tempahan</a>. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p><span class="masa">2 minit</span></li>
       <li><h3>Buat salinan dan pasang</h3><p>Klik pautan salinan dalam e-mel, terbitkan sebagai web app, kemudian masukkan kod lesen dalam wizard pemasangan.</p><span class="masa">5 minit</span></li>
       <li><h3>Kongsi kepada guru</h3><p>Tetapkan Pasukan PPS dan pautan sekolah. Kongsi pautan portal kepada guru dan mula mengisi eviden.</p><span class="masa">Hari yang sama</span></li>
     </ol>
@@ -425,7 +427,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     </div>
     <div class="harga-kad">
       <span class="pita">Lesen seumur hayat</span>
-      <div class="harga">RM39 <small>/ sekolah</small></div>
+      <p class="promo-pita" id="promoPita">Harga promo sehingga 31 Disember 2026</p>
+      <div class="harga"><s class="harga-lama">RM59</s> <span class="harga-n">RM39</span> <small>/ sekolah</small></div>
       <ul>
         <li>Semua modul: eviden, dashboard, PPS, laporan, direktori</li>
         <li>205 cadangan eviden sedia dimuatkan</li>
@@ -461,7 +464,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
     <div class="kepala">
       <p class="eyebrow">Borang tempahan</p>
       <h2>Dapatkan lesen sekolah anda</h2>
-      <p class="lead">Pindah RM39, muat naik resit dan hantar. Kod lesen, pautan salinan dan cara pemasangan terus dihantar ke e-mel anda.</p>
+      <p class="lead">Pindah <span class="harga-n">RM39</span>, muat naik resit dan hantar. Kod lesen, pautan salinan dan cara pemasangan terus dihantar ke e-mel anda.</p>
     </div>
 
     <div class="borang">
@@ -470,7 +473,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
           <h3><i>1</i>Bayaran</h3>
           <div class="akaun">
             <div><span>Maybank · No. akaun</span><b id="noAkaun">151043879403</b></div>
-            <div style="text-align:right"><span>Jumlah</span><span class="jumlah">RM39.00</span></div>
+            <div style="text-align:right"><span>Jumlah</span><span class="jumlah"><span class="harga-n" data-sen="1">RM39.00</span></span></div>
           </div>
           <div class="grid">
             <div class="medan"><button type="button" class="salin" id="btnSalin" style="justify-self:start">Salin no. akaun</button><small>Rujukan pindahan: kod sekolah anda.</small></div>
@@ -506,7 +509,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         </div>
 
         <div class="kad">
-          <label class="setuju"><input type="checkbox" id="setuju" required><span>Saya mengesahkan bayaran RM39 telah dibuat dan maklumat ini benar. Lesen ini untuk sekolah di atas sahaja.</span></label>
+          <label class="setuju"><input type="checkbox" id="setuju" required><span>Saya mengesahkan bayaran <span class="harga-n">RM39</span> telah dibuat dan maklumat ini benar. Lesen ini untuk sekolah di atas sahaja.</span></label>
           <button type="submit" class="hantar" id="btnHantar">Hantar tempahan</button>
           <div class="ralat" id="ralat" role="alert"></div>
         </div>
@@ -529,7 +532,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <section class="penutup">
   <div class="wrap">
     <h2>Bersedia untuk verifikasi SK@S yang lebih tenang?</h2>
-    <p>Kumpul eviden sepanjang tahun, bukan pada minggu terakhir. RM39 sekali bayar untuk seluruh sekolah.</p>
+    <p>Kumpul eviden sepanjang tahun, bukan pada minggu terakhir. <span class="harga-n">RM39</span> sekali bayar untuk seluruh sekolah.</p>
     <div class="cta-dwi" style="justify-content:center"><a class="btn utama" href="#tempah">Tempah sekarang →</a><a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba demo dahulu</a></div>
   </div>
 </section>
@@ -539,9 +542,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 
 <script>
 var URL_PELAYAN = 'https://script.google.com/macros/s/AKfycby3KTaRQ2e8XU9YuUJPHQgBW4IYd1st-qoDNygiJHRke03RIP4ppQtUXWG1IXz_VmBrUg/exec';
-var WHATSAPP = ''; // cth. '60123456789'. Kosong = butang WhatsApp disembunyikan.
+var WHATSAPP = '';
+var PROMO_TAMAT = new Date('2026-12-31T23:59:59+08:00'), PROMO = Date.now() <= PROMO_TAMAT, HARGA = PROMO ? 39 : 59; // cth. '60123456789'. Kosong = butang WhatsApp disembunyikan.
 (function () {
   var $ = function (id) { return document.getElementById(id); };
+  // Harga ikut tarikh: RM39 sehingga 31 Dis 2026, kemudian RM59 (pelayan tempahan menyemak tarikh yang sama).
+  document.querySelectorAll('.harga-n').forEach(function (el) { el.textContent = 'RM' + HARGA + (el.dataset.sen ? '.00' : ''); });
+  if (PROMO) {
+    var hari = Math.ceil((PROMO_TAMAT - Date.now()) / 864e5);
+    $('promoPita').textContent = 'Harga promo sehingga 31 Disember 2026 · ' + (hari <= 1 ? 'hari terakhir' : hari + ' hari lagi');
+  } else document.querySelectorAll('.promo-pita, .promo-teks, .harga-lama').forEach(function (el) { el.hidden = true; });
   if (WHATSAPP) { $('wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Salam, saya ingin bertanya tentang Portal Eviden SK@S.'); $('wa').hidden = false; }
 
   // Animasi mockup: bar tumbuh, angka dikira naik, kemudian eviden baharu masuk satu demi satu.
@@ -624,7 +634,7 @@ var WHATSAPP = ''; // cth. '60123456789'. Kosong = butang WhatsApp disembunyikan
       fr.readAsDataURL(f);
     });
   };
-  var MESEJ = { resit: 'Sila muat naik resit bayaran RM39.', kod: 'Kod sekolah mesti 5 hingga 10 huruf atau nombor, contoh BEA8642.',
+  var MESEJ = { resit: 'Sila muat naik resit bayaran RM' + HARGA + '.', kod: 'Kod sekolah mesti 5 hingga 10 huruf atau nombor, contoh BEA8642.',
     emel: 'Alamat e-mel tidak sah.', setuju: 'Sila tandakan pengesahan.' };
 
   $('borang').addEventListener('submit', function (ev) {
