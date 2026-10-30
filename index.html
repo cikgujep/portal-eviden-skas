@@ -41,7 +41,7 @@ h3 { font-size: 1.2rem }
 .nav nav a:hover { color: var(--fg) }
 .nav .btn { padding: 11px 16px; font-size: 15px; white-space: nowrap }
 @media (max-width: 860px) { .nav nav { display: none } }
-@media (max-width: 420px) { .jenama { font-size: 15px } .nav .btn { padding: 10px 12px; font-size: 14px } .peranti { transform: none } .skrin { grid-template-columns: 1fr } .sisi { display: none } }
+@media (max-width: 420px) { .jenama { font-size: 15px } .nav .btn { padding: 10px 12px; font-size: 14px } .peranti { transform: none; animation: none } .skrin { grid-template-columns: 1fr } .sisi { display: none } }
 
 /* Hero */
 .hero { padding: 64px 0 72px; overflow: hidden }
@@ -75,7 +75,30 @@ h3 { font-size: 1.2rem }
 .std-b em { font-style: normal; font-weight: 700; text-align: right }
 .pdca { display: flex; gap: 6px; flex-wrap: wrap }
 .pdca span { font: 700 11px var(--f-b); padding: 4px 8px; border-radius: 6px; background: var(--ok-soft); color: var(--ok) }
-.pdca span.x { background: var(--amber-soft); color: #9A4A06 }
+.pdca span.x { background: var(--amber-soft); color: #9A4A06; animation: denyut 2.4s ease-in-out infinite }
+.pdca span { transition: background .4s, color .4s }
+
+/* Animasi */
+@keyframes apung { 0%, 100% { transform: rotate(-1.2deg) translateY(0) } 50% { transform: rotate(-1.2deg) translateY(-10px) } }
+@keyframes denyut { 0%, 100% { box-shadow: 0 0 0 0 rgba(234,122,18,.35) } 50% { box-shadow: 0 0 0 6px rgba(234,122,18,0) } }
+@keyframes naik { 0% { color: var(--ok); transform: translateY(-4px) } 100% { transform: none } }
+.peranti { animation: apung 6s ease-in-out infinite }
+.std-b i::after { width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1) calc(var(--n) * 120ms) }
+.mula .std-b i::after { width: var(--w) }
+.kad-m b.naik { animation: naik .6s ease-out }
+.isi { position: relative }
+.notis { position: absolute; right: 14px; bottom: 12px; max-width: calc(100% - 28px); background: var(--navy); color: #fff; font-size: 11.5px; padding: 8px 12px; border-radius: 10px; display: flex; gap: 8px; align-items: center;
+  opacity: 0; transform: translateY(10px); transition: opacity .4s, transform .4s; box-shadow: 0 12px 24px -12px rgba(18,61,54,.7); pointer-events: none }
+.notis.on { opacity: 1; transform: none }
+.notis b { color: #7FE0D0 }
+.notis span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease-out, transform .7s ease-out }
+.reveal.on { opacity: 1; transform: none }
+@media (prefers-reduced-motion: reduce) {
+  *, *::after { animation: none !important; transition: none !important }
+  .reveal { opacity: 1; transform: none }
+  .std-b i::after { width: var(--w) }
+}
 
 /* Fakta */
 .fakta { background: var(--navy); color: #fff; padding: 34px 0 }
@@ -215,7 +238,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 4h9l5 5v11H5z" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><path d="m8.5 13.5 2.5 2.5 4.5-5" stroke="#2BB5A3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Portal Eviden SK@S
     </a>
-    <nav><a href="#kelebihan">Kelebihan</a><a href="#ciri">Ciri-ciri</a><a href="#kalkulator">Kalkulator</a><a href="#harga">Harga</a><a href="#soalan">Soalan lazim</a></nav>
+    <nav><a href="#kelebihan">Kelebihan</a><a href="#ciri">Ciri-ciri</a><a href="#kalkulator">Kalkulator</a><a href="#harga">Harga</a><a href="#soalan">Soalan lazim</a><a href="demo/" target="_blank" rel="noopener">Demo</a></nav>
     <a class="btn utama" href="#tempah">Tempah RM39</a>
   </div>
 </header>
@@ -228,7 +251,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <p class="lead">Tiada lagi fail bertaburan dan semakan saat akhir. Guru mengisi eviden ikut standard dan aspek, PPS memantau status PDCA, dan pentadbir nampak apa yang masih kurang sebelum verifikasi.</p>
       <div class="cta-dwi">
         <a class="btn utama" href="#tempah">Tempah sekarang · RM39 →</a>
-        <a class="btn kedua" href="#ciri">Lihat ciri-ciri ↓</a>
+        <a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba demo percuma</a>
       </div>
       <p class="nota">Bayar sekali, guna seumur hayat. Kod lesen dan cara pemasangan terus dihantar ke e-mel anda.</p>
     </div>
@@ -237,15 +260,16 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
         <div class="sisi"><b>SK@S</b><span class="on">Dashboard</span><span>Kekuatan Kami</span><span>Pengurusan Kami</span><span>Pencapaian Kami</span><span>Pasukan PPS</span><span>Laporan Eviden</span></div>
         <div class="isi">
           <div class="tj">Dashboard Eviden 2026</div>
-          <div class="kad-m"><div><b>168</b><small>eviden lengkap</small></div><div><b>24</b><small>dalam draf</small></div><div><b>13</b><small>belum diisi</small></div></div>
-          <div class="std">
-            <div class="std-b"><span>1 Kepemimpinan</span><i style="--w:92%"></i><em>92%</em></div>
-            <div class="std-b"><span>2 Organisasi</span><i style="--w:81%"></i><em>81%</em></div>
-            <div class="std-b"><span>3.1 Kurikulum</span><i style="--w:76%"></i><em>76%</em></div>
-            <div class="std-b"><span>3.2 Kokurikulum</span><i style="--w:68%"></i><em>68%</em></div>
-            <div class="std-b"><span>3.3 HEM</span><i style="--w:84%"></i><em>84%</em></div>
+          <div class="kad-m"><div><b id="mLengkap" data-n="168">168</b><small>eviden lengkap</small></div><div><b id="mDraf" data-n="24">24</b><small>dalam draf</small></div><div><b data-n="13">13</b><small>belum diisi</small></div></div>
+          <div class="std" id="mStd">
+            <div class="std-b"><span>1 Kepemimpinan</span><i style="--w:92%;--n:0"></i><em data-n="92">92%</em></div>
+            <div class="std-b"><span>2 Organisasi</span><i style="--w:81%;--n:1"></i><em data-n="81">81%</em></div>
+            <div class="std-b"><span>3.1 Kurikulum</span><i style="--w:76%;--n:2"></i><em data-n="76">76%</em></div>
+            <div class="std-b"><span>3.2 Kokurikulum</span><i style="--w:68%;--n:3"></i><em data-n="68">68%</em></div>
+            <div class="std-b"><span>3.3 HEM</span><i style="--w:84%;--n:4"></i><em data-n="84">84%</em></div>
           </div>
-          <div class="pdca"><span>Plan ✓</span><span>Do ✓</span><span class="x">Check · 3 kurang</span><span>Action ✓</span></div>
+          <div class="pdca"><span>Plan ✓</span><span>Do ✓</span><span class="x" id="mCheck">Check · 3 kurang</span><span>Action ✓</span></div>
+          <div class="notis" id="mNotis"><b>✓</b><span></span></div>
         </div>
       </div>
     </div>
@@ -419,6 +443,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
       <details><summary>Perlukah saya pandai komputer untuk memasangnya?</summary><p>Tidak. Anda hanya membuat salinan Google Sheet, menekan Deploy dan mengisi wizard. E-mel lesen dan panduan bergambar menerangkan setiap klik.</p></details>
       <details><summary>Siapa boleh melihat data eviden sekolah kami?</summary><p>Hanya pengguna yang didaftarkan oleh admin sekolah anda. Data dan fail berada dalam Google Sheet dan Drive milik akaun sekolah anda. Pembangun tidak boleh melihatnya.</p></details>
       <details><summary>Akaun apa yang patut digunakan?</summary><p>Gunakan akaun rasmi sekolah (contohnya akaun DELIMa) yang akan kekal walaupun guru bertukar. Akaun ini menjadi Admin dan pemilik semua fail eviden.</p></details>
+      <details><summary>Boleh saya cuba sebelum membeli?</summary><p>Boleh. <a href="demo/" target="_blank" rel="noopener">Buka demo</a> untuk mencuba portal sebenar dengan data contoh sekolah rekaan. Apa yang anda ubah dalam demo hanya disimpan dalam pelayar anda.</p></details>
       <details><summary>Perlukah guru memasang aplikasi?</summary><p>Tidak. Portal dibuka melalui pautan di pelayar telefon atau komputer.</p></details>
       <details><summary>Bagaimana jika e-mel lesen tidak sampai?</summary><p>Kod dan kunci lesen juga dipaparkan di skrin sebaik tempahan berjaya. Semak folder Spam, atau balas kepada pembangun dengan no. tempahan anda.</p></details>
       <details><summary>Bolehkah kami guna lebih daripada satu Google Sheet?</summary><p>Boleh. Lesen diikat pada kod dan nama sekolah anda, bukan pada satu fail. Anda boleh memasang beberapa salinan portal untuk sekolah yang sama, contohnya satu bagi setiap tahun. Lesen tidak boleh digunakan untuk sekolah lain kerana nama dan kod sekolah dipaparkan terus daripada lesen.</p></details>
@@ -501,7 +526,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
   <div class="wrap">
     <h2>Bersedia untuk verifikasi SK@S yang lebih tenang?</h2>
     <p>Kumpul eviden sepanjang tahun, bukan pada minggu terakhir. RM39 sekali bayar untuk seluruh sekolah.</p>
-    <a class="btn utama" href="#tempah">Tempah sekarang →</a>
+    <div class="cta-dwi" style="justify-content:center"><a class="btn utama" href="#tempah">Tempah sekarang →</a><a class="btn kedua" href="demo/" target="_blank" rel="noopener">▶ Cuba demo dahulu</a></div>
   </div>
 </section>
 
@@ -514,6 +539,49 @@ var WHATSAPP = ''; // cth. '60123456789'. Kosong = butang WhatsApp disembunyikan
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   if (WHATSAPP) { $('wa').href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Salam, saya ingin bertanya tentang Portal Eviden SK@S.'); $('wa').hidden = false; }
+
+  // Animasi mockup: bar tumbuh, angka dikira naik, kemudian eviden baharu masuk satu demi satu.
+  var senyap = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var kiraNaik = function (el, akhir, akhiran, ms) {
+    var t0 = performance.now();
+    (function langkah(t) {
+      var p = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(akhir * e) + akhiran;
+      if (p < 1) requestAnimationFrame(langkah);
+    })(t0);
+  };
+  if (!senyap) {
+    document.querySelectorAll('.kad-m b[data-n]').forEach(function (b) { kiraNaik(b, +b.dataset.n, '', 1100); });
+    document.querySelectorAll('.std-b em[data-n]').forEach(function (b) { kiraNaik(b, +b.dataset.n, '%', 1400); });
+  }
+  requestAnimationFrame(function () { requestAnimationFrame(function () { $('mStd').classList.add('mula'); }); });
+  var BARU = ['Rumusan pemantauan PdP', 'Laporan post-mortem UASA', 'Minit mesyuarat PIBG', 'Analisis kehadiran murid', 'Pelan tindakan Kokurikulum'];
+  var kurang = 3, langkahN = 0, lengkap = 168, draf = 24;
+  var detik = function (el, n) { el.textContent = n; el.classList.remove('naik'); void el.offsetWidth; el.classList.add('naik'); };
+  if (!senyap) setInterval(function () {
+    var chip = $('mCheck'), notis = $('mNotis');
+    if (kurang === 0) { // ulang kitaran dengan senyap
+      kurang = 3; lengkap = 168; draf = 24;
+      $('mLengkap').textContent = lengkap; $('mDraf').textContent = draf;
+      chip.className = 'x'; chip.textContent = 'Check · 3 kurang';
+      return;
+    }
+    notis.querySelector('span').textContent = 'Eviden baharu: ' + BARU[langkahN++ % BARU.length];
+    notis.classList.add('on'); setTimeout(function () { notis.classList.remove('on'); }, 2600);
+    detik($('mLengkap'), ++lengkap); detik($('mDraf'), --draf);
+    kurang--;
+    if (kurang) chip.textContent = 'Check · ' + kurang + ' kurang';
+    else { chip.className = ''; chip.textContent = 'Check ✓'; }
+  }, 3600);
+
+  // Kandungan muncul perlahan semasa skrol
+  var muncul = document.querySelectorAll('.kepala, .jadual, .tab-b, .kalk, .langkah li, .harga-kad, .faq details, .borang');
+  if ('IntersectionObserver' in window && !senyap) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    muncul.forEach(function (el, i) { el.classList.add('reveal'); el.style.transitionDelay = (el.matches('.langkah li, .faq details') ? (i % 4) * 90 : 0) + 'ms'; io.observe(el); });
+  }
 
   // Tab ciri
   var tabs = document.querySelectorAll('.tab-b button');
